@@ -1,0 +1,49 @@
+// common/vite/dev
+const defaultStyle = { display: 'block' };
+
+function createCssText(style: Record<string, string>): string {
+  return Object.entries(style)
+    .map(([key, value]) => `${key}: ${value};`)
+    .join(' ');
+}
+
+function createConstructor(
+  style?: Record<string, string> | undefined,
+  content?: string | undefined
+): CustomElementConstructor {
+  return class extends HTMLElement {
+    constructor() {
+      super();
+      this.style.cssText = createCssText({ ...defaultStyle, ...(style ?? {}) });
+      if (content) this.innerHTML = content;
+    }
+  };
+}
+
+type MicroFrontendSpec = {
+  name: string;
+  develop?: {
+    url?: string;
+    style?: Record<string, string>;
+    content?: string;
+  };
+};
+
+fetch(new Request('/micro-frontends.json'))
+  .then((res) => res.json())
+  .then((microFrontends: MicroFrontendSpec[]) => {
+    microFrontends.forEach(({ name, develop }) => {
+      if (develop) {
+        if (develop.url) {
+          import(/* @vite-ignore */ develop.url);
+        } else {
+          customElements.define(
+            name,
+            createConstructor(develop.style, develop.content)
+          );
+        }
+      } else {
+        customElements.define(name, createConstructor());
+      }
+    });
+  });

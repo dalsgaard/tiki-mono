@@ -1,0 +1,27 @@
+// common/vite/tools
+import { readFile, writeFile } from 'fs/promises';
+import { parse } from 'acorn';
+import { generate } from 'escodegen';
+
+export async function modify(sources, cdn) {
+  sources.forEach(async (source) => {
+    const ast = parse(await readFile(source, { encoding: 'utf-8' }), {
+      sourceType: 'module',
+      ecmaVersion: 'latest',
+    });
+    ast.body.forEach((node) => {
+      if (node.type === 'ImportDeclaration') {
+        const value = node.source.value;
+        if (value.match(/^[^\.\/]/)) {
+          node.source.value = `${cdn}/${value}`;
+        } else {
+          const m = value.match(/^(.+)\.jsx$/);
+          if (m) {
+            node.source.value = `${m[1]}.js`;
+          }
+        }
+      }
+    });
+    await writeFile(source, generate(ast), { encoding: 'utf-8' });
+  });
+}

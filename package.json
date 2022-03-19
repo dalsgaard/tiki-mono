@@ -1,0 +1,20 @@
+{
+  "name": "mf-mono",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "node tools/install-all.js",
+    "build:all": "node tools/preview-build-all.js",
+    "serve:all": "node tools/preview-serve-all.js",
+    "gen": "plop"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "globby": "^13.1.1",
+    "plop": "^3.0.5"
+  }
+}

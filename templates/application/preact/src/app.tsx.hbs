@@ -1,0 +1,10 @@
+// application/preact/src
+import { useState, useEffect } from 'preact/hooks';
+
+export function App() {
+  const [time, setTime] = useState<number>();
+  useEffect(() => {
+    setTime(Date.now());
+  }, []);
+  return <p onClick={() => setTime(Date.now())}>Time {time}</p>;
+}

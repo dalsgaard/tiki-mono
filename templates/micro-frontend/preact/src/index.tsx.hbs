@@ -1,0 +1,16 @@
+// micro-frontend/preact/src
+import register from 'preact-custom-element';
+import { {{properCase name}} } from './{{dashCase name}}.jsx';
+
+function Component(props: any) {
+  return (
+    <>
+      <style>__CSS__</style>
+      <{{properCase name}} {...props} />
+    </>
+  );
+}
+
+register(Component, '{{dashCase name}}', [], {
+  shadow: true,
+});

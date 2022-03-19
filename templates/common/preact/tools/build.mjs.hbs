@@ -1,0 +1,22 @@
+// common/preact/tools
+import { build as esbuild } from 'esbuild';
+import { globby } from 'globby';
+
+export async function build(outdir) {
+  const plugins = [];
+  const tsxEntryPoints = await globby(['src/**/*.tsx']);
+  const tsEntryPoints = await globby(['src/**/*.ts', '!src/**/*.d.ts']);
+  await esbuild({
+    plugins,
+    entryPoints: tsxEntryPoints,
+    outdir,
+    banner: {
+      js: `import { h, Fragment } from 'preact'`,
+    },
+  });
+  await esbuild({
+    plugins,
+    entryPoints: tsEntryPoints,
+    outdir,
+  });
+}

@@ -1,0 +1,15 @@
+// micro-frontend/vite/tools
+import { globby } from 'globby';
+import { build } from './build.mjs';
+import { modify } from './modify.mjs';
+import { style } from './style.mjs';
+
+const CDN = '{{cdn}}';
+
+async function main(outdir) {
+  await build(outdir);
+  await modify(await globby(`${outdir}/**/*.js`), CDN);
+  await style(await globby(`src/**/*.css`), outdir);
+}
+
+main('./dist');

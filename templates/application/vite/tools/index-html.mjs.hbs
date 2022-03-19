@@ -1,0 +1,26 @@
+// application/vite/tools
+import { readFile, writeFile } from 'fs/promises';
+
+async function readJson(path) {
+  return JSON.parse(await readFile(path, { encoding: 'utf-8' }));
+}
+
+async function indexJs(outdir) {
+  const microFrontends = await readJson('./micro-frontends.json');
+  const imports = [
+    `import './main.js'`,
+    ...microFrontends.map(({ preview }) => `import('${preview}');`),
+  ].join('\n');
+  await writeFile(`${outdir}/index.js`, imports, {
+    encoding: 'utf-8',
+  });
+}
+
+export async function indexHtml(outdir) {
+  await indexJs(outdir);
+  let html = await readFile('./index.html', { encoding: 'utf-8' });
+  html = html.replace('src="/index.ts"', 'src="/index.js"');
+  await writeFile(`${outdir}/index.html`, html, {
+    encoding: 'utf-8',
+  });
+}

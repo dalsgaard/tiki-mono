@@ -1,0 +1,16 @@
+// application/vite/tools
+import { readFile, writeFile } from 'fs/promises';
+import { globby } from 'globby';
+import { build } from './build.mjs';
+import { indexHtml } from './index-html.mjs';
+import { modify } from './modify.mjs';
+
+const CDN = '{{cdn}}';
+
+async function main(outdir) {
+  await build(outdir);
+  await modify(await globby(`${outdir}/**/*.js`), CDN);
+  await indexHtml(outdir);
+}
+
+main('./dist');
