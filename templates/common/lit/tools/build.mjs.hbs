@@ -1,0 +1,13 @@
+// common/lit/tools
+import { build as esbuild } from 'esbuild';
+import { globby } from 'globby';
+
+export async function build(outdir) {
+  const plugins = [];
+  const entryPoints = await globby(['src/**/*.ts', '!src/**/*.d.ts']);
+  await esbuild({
+    plugins,
+    entryPoints,
+    outdir,
+  });
+}

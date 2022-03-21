@@ -3,7 +3,7 @@ import { readJson } from '../lib/read-json.js';
 
 const defaultPort = nextPort();
 
-export const commonPrompts = [
+export const CommonPrompts = [
   {
     type: 'input',
     name: 'name',
@@ -50,3 +50,5 @@ export function nextPort() {
   }
   return port;
 }
+
+export const JsxFrameworks = ['preact'];

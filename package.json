@@ -8,7 +8,7 @@
     "install:all": "node tools/install-all.js",
     "build:all": "node tools/preview-build-all.js",
     "serve:all": "node tools/preview-serve-all.js",
-    "gen": "plop"
+    "tiki": "plop"
   },
   "author": "",
   "license": "ISC",

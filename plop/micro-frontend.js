@@ -1,10 +1,10 @@
-import { commonPrompts, nextPort } from './common.js';
+import { CommonPrompts, JsxFrameworks, nextPort } from './common.js';
 
 export default function (plop) {
   plop.setGenerator('micro-frontend', {
     description: 'a micro frontend',
     prompts: [
-      ...commonPrompts,
+      ...CommonPrompts,
       {
         type: 'list',
         name: 'framework',
@@ -12,7 +12,7 @@ export default function (plop) {
         choices: ['lit', 'preact'],
       },
     ],
-    actions: function (data) {
+    actions: function ({ framework }) {
       return [
         {
           type: 'addMany',
@@ -38,11 +38,7 @@ export default function (plop) {
           base: 'templates/micro-frontend/{{framework}}',
           templateFiles: 'templates/micro-frontend/{{framework}}/**/*.hbs',
         },
-        {
-          type: 'add',
-          path: 'micro-frontends/{{dashCase name}}/src/{{dashCase name}}.tsx',
-          templateFile: 'templates/component/{{framework}}/component.tsx.hbs',
-        },
+        ...componentActions(framework),
         {
           type: 'add',
           path: 'micro-frontends/{{dashCase name}}/src/{{dashCase name}}.css',
@@ -51,4 +47,15 @@ export default function (plop) {
       ];
     },
   });
+}
+
+function componentActions(framework) {
+  const ext = JsxFrameworks.includes(framework) ? 'tsx' : 'ts';
+  return [
+    {
+      type: 'add',
+      path: `micro-frontends/{{dashCase name}}/src/{{dashCase name}}.${ext}`,
+      templateFile: `templates/component/{{framework}}/component.${ext}.hbs`,
+    },
+  ];
 }

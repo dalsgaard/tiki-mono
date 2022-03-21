@@ -1,10 +1,10 @@
-import { commonPrompts, nextPort } from './common.js';
+import { CommonPrompts, nextPort } from './common.js';
 
 export default function (plop) {
   plop.setGenerator('application', {
     description: 'an application',
     prompts: [
-      ...commonPrompts,
+      ...CommonPrompts,
       {
         type: 'list',
         name: 'framework',
