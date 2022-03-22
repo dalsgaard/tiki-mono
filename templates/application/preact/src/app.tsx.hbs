@@ -6,5 +6,9 @@ export function App() {
   useEffect(() => {
     setTime(Date.now());
   }, []);
-  return <p onClick={() => setTime(Date.now())}>Time {time}</p>;
+  return (
+    <section>
+      <p onClick={() => setTime(Date.now())}>Time {time}</p>
+    </section>
+  );
 }

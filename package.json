@@ -5,9 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "install:all": "node tools/install-all.js",
-    "build:all": "node tools/preview-build-all.js",
-    "serve:all": "node tools/preview-serve-all.js",
+    "items:install": "node tools/items-install.js",
+    "items:build": "node tools/items-build.js",
+    "items:serve": "node tools/items-serve.js",
+    "items:dev": "node tools/items-dev.js",
     "tiki": "plop"
   },
   "author": "",

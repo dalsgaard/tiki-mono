@@ -100,7 +100,7 @@ export default function (plop) {
 
 function getPort(name) {
   const config = readJson(`micro-frontends/${name}/config.json`);
-  return config?.port;
+  return config?.previewPort;
 }
 
 function createPreview({ previewUrl, name, place }) {

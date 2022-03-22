@@ -38,7 +38,9 @@ export function usedPorts() {
     'applications/*/config.json',
     'micro-frontends/*/config.json',
   ]);
-  return files.map((file) => readJson(file)).map(({ port }) => port);
+  return files
+    .map((file) => readJson(file))
+    .map(({ previewPort }) => previewPort);
 }
 
 export function nextPort() {
