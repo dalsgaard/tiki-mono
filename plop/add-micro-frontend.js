@@ -64,19 +64,9 @@ export default function (plop) {
         ...(jsx
           ? [
               {
-                type: 'modify',
-                path: '{{host}}/src/micro-frontends.d.ts',
-                transform: (content, { name }) => {
-                  return content.replace(
-                    /IntrinsicElements\s*\{([^\}]*)\}/,
-                    (_, content) => {
-                      const tags = content.trim().split(/;\s*/).filter(Boolean);
-                      tags.push(`'${name}': any`);
-                      const lines = tags.map((tag) => `    ${tag};\n`);
-                      return `IntrinsicElements {\n${lines.join('')}  }`;
-                    }
-                  );
-                },
+                type: 'add',
+                path: '{{host}}/src/{{dashCase name}}.d.ts',
+                templateFile: 'templates/types/jsx.d.ts.hbs',
               },
             ]
           : []),
