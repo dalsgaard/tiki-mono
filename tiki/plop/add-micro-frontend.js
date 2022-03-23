@@ -66,7 +66,7 @@ export default function (plop) {
               {
                 type: 'add',
                 path: '{{host}}/src/{{dashCase name}}.d.ts',
-                templateFile: 'templates/types/jsx.d.ts.hbs',
+                templateFile: 'tiki/templates/types/jsx.d.ts.hbs',
               },
             ]
           : []),

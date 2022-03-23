@@ -1,7 +1,7 @@
-import application from './plop/application.js';
-import microFrontend from './plop/micro-frontend.js';
-import addMicroFrontend from './plop/add-micro-frontend.js';
-import init from './plop/init.js';
+import application from './tiki/plop/application.js';
+import microFrontend from './tiki/plop/micro-frontend.js';
+import addMicroFrontend from './tiki/plop/add-micro-frontend.js';
+import init from './tiki/plop/init.js';
 
 export default function (plop) {
   init(plop);

@@ -17,32 +17,32 @@ export default function (plop) {
         {
           type: 'addMany',
           destination: 'micro-frontends/{{dashCase name}}',
-          base: 'templates/common/vite',
-          templateFiles: 'templates/common/vite/**/*.hbs',
+          base: 'tiki/templates/common/vite',
+          templateFiles: 'tiki/templates/common/vite/**/*.hbs',
         },
         {
           type: 'addMany',
           destination: 'micro-frontends/{{dashCase name}}',
-          base: 'templates/common/{{framework}}',
-          templateFiles: 'templates/common/{{framework}}/**/*.hbs',
+          base: 'tiki/templates/common/{{framework}}',
+          templateFiles: 'tiki/templates/common/{{framework}}/**/*.hbs',
         },
         {
           type: 'addMany',
           destination: 'micro-frontends/{{dashCase name}}',
-          base: 'templates/micro-frontend/vite',
-          templateFiles: 'templates/micro-frontend/vite/**/*.hbs',
+          base: 'tiki/templates/micro-frontend/vite',
+          templateFiles: 'tiki/templates/micro-frontend/vite/**/*.hbs',
         },
         {
           type: 'addMany',
           destination: 'micro-frontends/{{dashCase name}}',
-          base: 'templates/micro-frontend/{{framework}}',
-          templateFiles: 'templates/micro-frontend/{{framework}}/**/*.hbs',
+          base: 'tiki/templates/micro-frontend/{{framework}}',
+          templateFiles: 'tiki/templates/micro-frontend/{{framework}}/**/*.hbs',
         },
         ...componentActions(framework),
         {
           type: 'add',
           path: 'micro-frontends/{{dashCase name}}/src/{{dashCase name}}.css',
-          templateFile: 'templates/style/{{framework}}/style.css.hbs',
+          templateFile: 'tiki/templates/style/{{framework}}/style.css.hbs',
         },
       ];
     },
@@ -55,7 +55,7 @@ function componentActions(framework) {
     {
       type: 'add',
       path: `micro-frontends/{{dashCase name}}/src/{{dashCase name}}.${ext}`,
-      templateFile: `templates/component/{{framework}}/component.${ext}.hbs`,
+      templateFile: `tiki/templates/component/{{framework}}/component.${ext}.hbs`,
     },
   ];
 }

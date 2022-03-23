@@ -5,10 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "items:install": "node tools/items-install.js",
-    "items:build": "node tools/items-build.js",
-    "items:serve": "node tools/items-serve.js",
-    "items:dev": "node tools/items-dev.js",
+    "items:install": "node tiki/tools/items-install.js",
+    "items:build": "node tiki/tools/items-build.js",
+    "items:serve": "node tiki/tools/items-serve.js",
+    "items:dev": "node tiki/tools/items-dev.js",
     "tiki": "plop"
   },
   "author": "",
