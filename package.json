@@ -9,7 +9,11 @@
     "items:build": "node tiki/tools/items-build.js",
     "items:serve": "node tiki/tools/items-serve.js",
     "items:dev": "node tiki/tools/items-dev.js",
-    "tiki": "plop"
+    "tiki": "plop",
+    "ins": "pnpm items:install",
+    "bld": "pnpm items:build",
+    "srv": "pnpm items:serve",
+    "dev": "pnpm items:dev"
   },
   "author": "",
   "license": "ISC",
