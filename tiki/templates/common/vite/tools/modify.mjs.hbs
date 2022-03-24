@@ -3,7 +3,10 @@ import { readFile, writeFile } from 'fs/promises';
 import { parse } from 'acorn';
 import { generate } from 'escodegen';
 
-export async function modify(sources, cdn) {
+export async function modify(sources) {
+  const { cdn } = JSON.parse(
+    await readFile('import-mapping.json', { encoding: 'utf-8' })
+  );
   sources.forEach(async (source) => {
     const ast = parse(await readFile(source, { encoding: 'utf-8' }), {
       sourceType: 'module',
